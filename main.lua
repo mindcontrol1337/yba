@@ -792,7 +792,6 @@ local function autoStory()
                 task.wait(0.5)
             end
         end)
-        autoStory()
 
     elseif LocalPlayer.PlayerStats.Level.Value == 50 then
         if Character:FindFirstChild("FocusCam") then
