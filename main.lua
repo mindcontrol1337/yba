@@ -637,7 +637,7 @@ local function autoStory()
         farmItem("Mysterious Arrow", 25)
 		farmItem("Zeppeli's Hat", 1)
 
-        if countItems("Mysterious Arrow") >= 25 and countItems("Rokakaka") >= 25 then
+        if countItems("Mysterious Arrow") >= 25 and countItems("Mysterious Arrow") >= 25 then
             print("MAX ARROW AND ROKA, GOT")
             print("ATTEMPTING TO STAND FARM")
             dontTPOnDeath = false
@@ -755,39 +755,21 @@ local function autoStory()
 
     elseif questPanel:FindFirstChild("Take down 3 vampires") and LocalPlayer.PlayerStats.Spec.Value ~= "None" and LocalPlayer.PlayerStats.Level.Value >= 25 and LocalPlayer.PlayerStats.Level.Value ~= 50 then
         getgenv().HamonCharge = 10
-        
-        local function getValidVampire()
-            for _, v in pairs(workspace.Living:GetChildren()) do
-                if v.Name == "Vampire" and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
-                    local hrp = v.HumanoidRootPart
-                    if hrp.Transparency < 1 and hrp.Size.Magnitude > 1 then
-                        return v
-                    end
-                end
-            end
-            return nil
-        end
-
         local function vampire()
-            local validVamp = getValidVampire()
-            if validVamp and validVamp:FindFirstChild("HumanoidRootPart") then
-                LocalPlayer.Character.PrimaryPart.CFrame = validVamp.HumanoidRootPart.CFrame - Vector3.new(0, 15, 0)
+            local vamp = workspace.Living:FindFirstChild("Vampire")
+            if vamp and vamp:FindFirstChild("HumanoidRootPart") and vamp:FindFirstChild("Humanoid") and vamp.Humanoid.Health > 0 and vamp.HumanoidRootPart.Transparency < 1 then
+                LocalPlayer.Character.PrimaryPart.CFrame = vamp.HumanoidRootPart.CFrame - Vector3.new(0, 15, 0)
             end
             if not questPanel:FindFirstChild("Take down 3 vampires") then
                 if (tick() - lastTick) >= 5 then
+                  
                     lastTick = tick()
                 end
                 endDialogue("William Zeppeli", "Dialogue4", "Option1")
             end
         end
 
-        local validVamp = getValidVampire()
-        if validVamp then
-            killNPC(validVamp.Name, 15, false, vampire)
-        else
-            task.wait(1)
-        end
-        task.wait(0.5)
+        killNPC("Vampire", 15, false, vampire)
         autoStory()
 
     elseif LocalPlayer.PlayerStats.Level.Value == 50 then
@@ -797,9 +779,6 @@ local function autoStory()
                delfile("AutoPres3_"..LocalPlayer.Name..".txt")
            end)
 		end
-    else
-        task.wait(1)
-        autoStory()
     end
 end
 
