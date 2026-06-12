@@ -12,7 +12,7 @@ getgenv().standList =  {
 getgenv().waitUntilCollect = 0.6 --Change this if ur getting kicked a lot
 getgenv().sortOrder = "Asc" --desc for less players, asc for more
 getgenv().lessPing = false --turn this on if u want lower ping servers, cant guarantee you will see same people using script, and data error 1
-getgenv().autoRequiem = true --turn this on for auto requiem
+getgenv().autoRequiem = false --turn this on for auto requiem
 getgenv().NPCTimeOut = 15 --timeout for npc not spawning
 getgenv().HamonCharge = 90 --change if u want to charge hamon after every kill (around 90)
 getgenv().webhook = "https://discord.com/api/webhooks/1381173563612074085/mSPyu9_6PXn2TwNIzairPJqHnRgORN-YUGQNaj2h-f3ZMWLRxck9TCKdxbDIx6oejUOq" --change this if u want to use ur own webhook
@@ -781,17 +781,17 @@ local function autoStory()
             end
         end
 
-        task.spawn(function()
-            while questPanel:FindFirstChild("Take down 3 vampires") do
-                local validVamp = getValidVampire()
-                if validVamp then
-                    killNPC(validVamp.Name, 15, false, vampire)
-                else
-                    task.wait(1)
-                end
-                task.wait(0.5)
+        while questPanel:FindFirstChild("Take down 3 vampires") do
+            local validVamp = getValidVampire()
+            if validVamp then
+                killNPC(validVamp.Name, 15, false, vampire)
+            else
+                task.wait(1)
             end
-        end)
+            task.wait(0.5)
+        end
+        storyDialogue()
+        autoStory()
 
     elseif LocalPlayer.PlayerStats.Level.Value == 50 then
         if Character:FindFirstChild("FocusCam") then
