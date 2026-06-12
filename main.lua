@@ -12,10 +12,10 @@ getgenv().standList =  {
 getgenv().waitUntilCollect = 0.6 --Change this if ur getting kicked a lot
 getgenv().sortOrder = "Asc" --desc for less players, asc for more
 getgenv().lessPing = false --turn this on if u want lower ping servers, cant guarantee you will see same people using script, and data error 1
-getgenv().autoRequiem = true --turn this on for auto requiem
+getgenv().autoRequiem = false --turn this on for auto requiem
 getgenv().NPCTimeOut = 15 --timeout for npc not spawning
 getgenv().HamonCharge = 90 --change if u want to charge hamon after every kill (around 90)
-getgenv().webhook = "https://discord.com/api/webhooks/1381173563612074085/mSPyu9_6PXn2TwNIzairPJqHnRgORN-YUGQNaj2h-f3ZMWLRxck9TCKdxbDIx6oejUOq" --change this if u want to use ur own webhook
+getgenv().webhook = "https://discord.com/api/webhooks/1515017893514051645/OlGj4o0V0CpvacRxKWUEQFucYr1XVDSVURlL6mv9bd84jrcFVAkXPjxE09VrO6gEOVOb" --change this if u want to use ur own webhook
 
 game:GetService("CoreGui").DescendantAdded:Connect(function(child)
     if child.Name == "ErrorPrompt" then
